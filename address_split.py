@@ -1,6 +1,5 @@
 import json     # json package imported to create json output
 
-
 class Address:
     def address_split(adr):
         """
@@ -63,8 +62,7 @@ class Address:
         return street_addr, house_nr_str
 
 
-
-    def main():
+    def main_address(file_path='address.txt'):
         """
         This is the main method to read the address file and pass the address line to the `address_split` method
         The method takes the input as the address passed a location where the file is kept
@@ -75,9 +73,8 @@ class Address:
         street_addr = ''
         house_nr_str = ''
         address_dict = {}
-        adr_file = 'address.txt'
 
-        with open(adr_file.encode("utf-8"), 'r') as file:
+        with open(file_path.encode("utf-8"), 'r') as file:
             for adr in file:
                 street_addr, house_nr_str = Address.address_split(adr)  # calling the function
                 address_dict['street'] = street_addr.replace('\n', '').strip()
@@ -90,4 +87,5 @@ class Address:
 
 
 if __name__ == '__main__':
-    Address.main()
+    Address.main_address()
+    # pass the input parameter as the location of address file
