@@ -87,5 +87,5 @@ class Address:
 
 
 if __name__ == '__main__':
-    Address.main_address()
+    Address.main_address('address.txt')
     # pass the input parameter as the location of address file
