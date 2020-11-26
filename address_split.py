@@ -76,7 +76,7 @@ def main():
     address_dict = {}
     adr_file = 'address.txt'
 
-    with open(adr_file, 'r', encoding="utf-8") as file:
+    with open(adr_file.encode("utf-8"), 'r') as file:
         for adr in file:
             street_addr, house_nr_str = address_split(adr)  # calling the function
             address_dict['street'] = street_addr.replace('\n', '').strip()
