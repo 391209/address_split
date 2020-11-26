@@ -1,4 +1,5 @@
-import json     # json package imported to create json output
+import json  # json package imported to create json output
+
 
 class Address:
     def address_split(adr):
@@ -15,33 +16,33 @@ class Address:
         house_nr_str = ' '
 
         if ',' in adr:
-            l_addr = adr.split(',')     # split address if there is a `,` comma present in address line
+            l_addr = adr.split(',')  # split address if there is a `,` comma present in address line
         else:
-            l_addr = adr.split(' ')     # split address using `space` if there is no `,` comma present in address line
-        for word in l_addr:     # loop through the list containing separate elements of address line based on the split
+            l_addr = adr.split(' ')  # split address using `space` if there is no `,` comma present in address line
+        for word in l_addr:  # loop through the list containing separate elements of address line based on the split
             if l_addr[0].isdigit():  # if first word in address line is a number
-                house_nr = l_addr[0]    # assign the first element to house number
-                number_pos.append(0)    # add `0` in number position list
+                house_nr = l_addr[0]  # assign the first element to house number
+                number_pos.append(0)  # add `0` in number position list
             elif word.isdigit():  # if address string contains a digit
                 number_pos.append(l_addr.index(word))
                 # assign the index of the element which is number to the number position list
-                num_ctr += 1    # increment the number control by 1
+                num_ctr += 1  # increment the number control by 1
                 house_nr = word  # assign the element to house number
             elif any(map(str.isdigit, word)):  # if address string contains an alphanumeric
                 number_pos.append(l_addr.index(word))
                 # assign the index of the element which is number to the number position list
-                num_ctr += 1    # increment the number control by 1
+                num_ctr += 1  # increment the number control by 1
                 house_nr = word  # assign the element to house number
 
-        if num_ctr > 1:     # check if number control increment has been done
-            end = number_pos[0] + 1     # assign the position of house number to the index position end
-            street_addr = street_addr.join(l_addr[:end])    # join street address before the index position end
+        if num_ctr > 1:  # check if number control increment has been done
+            end = number_pos[0] + 1  # assign the position of house number to the index position end
+            street_addr = street_addr.join(l_addr[:end])  # join street address before the index position end
             house_nr_str = house_nr_str.join(l_addr[end:])  # join house number after the index position end
 
         elif num_ctr == 1 or l_addr[0].isdigit():
             #  if first element of address line is digit or house number is not at the end
-            if l_addr[0].isdigit():     # if first element is house number
-                house_nr_str = l_addr[0]    # assign first element to house number
+            if l_addr[0].isdigit():  # if first element is house number
+                house_nr_str = l_addr[0]  # assign first element to house number
                 street_addr = street_addr.join(l_addr[1:])  # join rest of the address line as street address
             else:
                 end = number_pos[0]
@@ -60,7 +61,6 @@ class Address:
             street_addr = street_addr.replace(',', '')
 
         return street_addr, house_nr_str
-
 
     def main_address(file_path='address.txt'):
         """
